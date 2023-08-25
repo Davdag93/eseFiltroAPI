@@ -7,11 +7,11 @@ fetch(API)
     })
     .then((data) => {
         pokemon = data;
+        
         console.log(pokemon)
         generaCards(pokemon)
     })
     .catch((err) => {})
-
 
 
 function generaCards(pokemon) {
@@ -75,4 +75,5 @@ searchBar.addEventListener("keyup", (e) => {
     }
   
     updatePokemonCards(pokemonFiltrati);
-  });
+});
+

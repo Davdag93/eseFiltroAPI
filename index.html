@@ -10,10 +10,13 @@
 </head>
 <body>
     <div class="container bg-white p-2 pb-5 pt-3">
-        <h1 class="text-center fw-bold text-primary">Pokédex</h1>
-        <p class="text-center">Elenco completo dei Pokèmon di prima generazione</p>
+        <div class="d-flex justify-content-center">
+            <img src="img/pokemon.png" width="25%" alt="logo Pokémon"/>
+        </div>
+        <h1 class="text-center fs-4">Elenco completo dei Pokémon</h1>
+        <p class="text-center fs-6">Puoi cercare i Pokémon per nome o per tipo</p>
         <div class="justify-content-center d-flex">
-            <input id="cercaPkm" type="search" class="form-control w-25" placeholder="Cerca"/>
+            <input id="cercaPkm" type="search" class="form-control w-25" placeholder='example "type: fire"'/>
         </div>
             <div class="row justify-content-around m-5" id="pokedex" ></div>
     </div>
