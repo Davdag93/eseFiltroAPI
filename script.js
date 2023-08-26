@@ -1,4 +1,5 @@
- const API = 'pokemon.json-master/pokedex.json'
+const API = 'pokemon.json-master/pokedex.json'
+
 
 let pokemon
 fetch(API)
@@ -19,14 +20,16 @@ function generaCards(pokemon) {
     pokemon.forEach(pkm => {
         const card = `
         <div class="col-md-2 mb-4">
-        <div class="card">
-            <div class="card-image-top p-3"><img src="pokemon.json-master/images/${formatoID(pkm.id)}.png" alt="${pkm.name.english}" title="${pkm.id}" class="img-fluid"></div>
-            
-            <div class="card-text">
-                <h3 class="text-center">${pkm.name.english}</h3>
+            <div class="card card-hover" onclick="details(${pkm.id})">
+                <div class="card-image-top p-3">
+                    <img src="pokemon.json-master/images/${formatoID(pkm.id)}.png" alt="${pkm.name.english}"  class="img-fluid">
+                </div>
+                <div class="card-text">
+                    <h3 class="text-center">${pkm.name.english}</h3>
+                </div>
             </div>
         </div>
-    </div>`;
+    `;
         pokedex.insertAdjacentHTML("beforeend", card);
     });
 }
@@ -43,26 +46,22 @@ function formatoID(id) {
 
 
 const searchBar = document.querySelector("#cercaPkm")
-// Funzione per filtrare i Pokémon per nome (non case sensitive)
 function filterByPokemonName(name, pokemon) {
     const lowerCaseName = name.toLowerCase();
     return pokemon.filter(pkmn => pkmn.name.english.toLowerCase().startsWith(lowerCaseName));
   }
-  
-  // Funzione per filtrare i Pokémon per tipo (non case sensitive)
-  function filterByPokemonType(type, data) {
-    const lowerCaseType = type.toLowerCase();
-    return data.filter(pkmn => pkmn.type.some(t => t.toLowerCase() === lowerCaseType));
-  }
 
-// Funzione per aggiornare le card dei Pokémon
+function filterByPokemonType(type, data) {
+const lowerCaseType = type.toLowerCase();
+return data.filter(pkmn => pkmn.type.some(t => t.toLowerCase() === lowerCaseType));
+}
+
 function updatePokemonCards(filteredPokemon) {
   const pokedex = document.querySelector("#pokedex");
-  pokedex.innerHTML = ""; // Svuota il contenitore
+  pokedex.innerHTML = ""; 
   generaCards(filteredPokemon);
 }
 
-// Aggiungi un ascoltatore all'evento "keyup" sulla searchBar
 searchBar.addEventListener("keyup", (e) => {
     const inputValue = e.target.value.trim();
     let pokemonFiltrati = [];
@@ -77,3 +76,35 @@ searchBar.addEventListener("keyup", (e) => {
     updatePokemonCards(pokemonFiltrati);
 });
 
+
+function details(pokemonId) {
+    const selectedPokemon = pokemon.find(pkmn => pkmn.id === pokemonId);
+    console.log(selectedPokemon)
+    if (selectedPokemon) {
+        const elencoCard = document.querySelector("#pokedex")
+        const detailsContainer = document.getElementById("details-row");
+        elencoCard.innerHTML = "";
+
+        const card = `
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${selectedPokemon.name.english}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Type: ${selectedPokemon.type.join(", ")}</h6>
+                        <p class="card-text">HP: ${selectedPokemon.base.HP}</p>
+                        <p class="card-text">Attack: ${selectedPokemon.base.Attack}</p>
+                        <p class="card-text">Defense: ${selectedPokemon.base.Defense}</p>
+                        <p class="card-text">Sp. Attack: ${selectedPokemon.base["Sp. Attack"]}</p>
+                        <p class="card-text">Sp. Defense: ${selectedPokemon.base["Sp. Defense"]}</p>
+                        <p class="card-text">Speed: ${selectedPokemon.base.Speed}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="pokemon.json-master/images/${formatoID(selectedPokemon.id)}.png" alt="${selectedPokemon.name.english}" class="img-fluid">
+            </div>
+        `;
+
+        detailsContainer.innerHTML = card;
+    }
+}
