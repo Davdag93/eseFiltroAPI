@@ -88,7 +88,8 @@ function details(pokemonId) {
                 <div class="row">
                     <div class="card-body">
                         <h5 class="card-title fw-bold text-center fs-2">${selectedPokemon.name.english}</h5>
-                        <h6 class="card-subtitle pb-3 text-center fs-4">Type: ${selectedPokemon.type.join(", ")}</h6>
+                        <h6 class="card-subtitle pb-1 text-center fs-4">Type: ${selectedPokemon.type.join(", ")}</h6>
+                        <h6 class="card-text pb-3 text-center fs-5">n. ${formatoID(selectedPokemon.id)}</h6> 
                         <div class=" d-flex justify-content-center">
                             <img src="pokemon.json-master/images/${formatoID(selectedPokemon.id)}.png" alt="${selectedPokemon.name.english}" class="img-fluid" width="50%" >
                         </div>
