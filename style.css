@@ -1,5 +1,17 @@
 body {
-    background-color: yellow;
+    background-color: #FFF50F;
+    font-family: 'Handjet', cursive;
+}
+header h1 {
+    font-weight: 600;
+    font-size: 2em;
+}
+header p {
+    font-weight: 400;
+    font-size: 1.3em;
+}
+header input:placeholder-shown{
+    font-weight: 600;
 }
 .card-hover:hover {
     transform: scale(1.05);
@@ -8,4 +20,16 @@ body {
 }
 .card {
     cursor: pointer;
+    font-weight: 400;
+}
+.container {
+    border: 8px inset #4876FD;
+}
+footer 
+footer p {
+    font-weight: 400;
+    font-size: 18px;
+}
+.puntatore{
+    cursor:default;
 }

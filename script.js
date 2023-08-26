@@ -8,8 +8,6 @@ fetch(API)
     })
     .then((data) => {
         pokemon = data;
-        
-        console.log(pokemon)
         generaCards(pokemon)
     })
     .catch((err) => {})
@@ -79,32 +77,51 @@ searchBar.addEventListener("keyup", (e) => {
 
 function details(pokemonId) {
     const selectedPokemon = pokemon.find(pkmn => pkmn.id === pokemonId);
-    console.log(selectedPokemon)
     if (selectedPokemon) {
         const elencoCard = document.querySelector("#pokedex")
         const detailsContainer = document.getElementById("details-row");
         elencoCard.innerHTML = "";
 
         const card = `
-            <div class="col-md-6">
-                <div class="card">
+            <div class="col-12">
+                <div class="card puntatore p-2">
+                <div class="row">
                     <div class="card-body">
-                        <h5 class="card-title">${selectedPokemon.name.english}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Type: ${selectedPokemon.type.join(", ")}</h6>
-                        <p class="card-text">HP: ${selectedPokemon.base.HP}</p>
-                        <p class="card-text">Attack: ${selectedPokemon.base.Attack}</p>
-                        <p class="card-text">Defense: ${selectedPokemon.base.Defense}</p>
-                        <p class="card-text">Sp. Attack: ${selectedPokemon.base["Sp. Attack"]}</p>
-                        <p class="card-text">Sp. Defense: ${selectedPokemon.base["Sp. Defense"]}</p>
-                        <p class="card-text">Speed: ${selectedPokemon.base.Speed}</p>
+                        <h5 class="card-title fw-bold text-center fs-2">${selectedPokemon.name.english}</h5>
+                        <h6 class="card-subtitle pb-3 text-center fs-4">Type: ${selectedPokemon.type.join(", ")}</h6>
+                        <div class=" d-flex justify-content-center">
+                            <img src="pokemon.json-master/images/${formatoID(selectedPokemon.id)}.png" alt="${selectedPokemon.name.english}" class="img-fluid" width="50%" >
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-6">
+                                <p class="card-text text-center fs-5">HP: ${selectedPokemon.base.HP}</p>
+                                <p class="card-text text-center fs-5">Attack: ${selectedPokemon.base.Attack}</p>
+                                <p class="card-text text-center fs-5">Defense: ${selectedPokemon.base.Defense}</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text text-center fs-5">Sp. Attack: ${selectedPokemon.base["Sp. Attack"]}</p>
+                                <p class="card-text text-center fs-5">Sp. Defense: ${selectedPokemon.base["Sp. Defense"]}</p>
+                                <p class="card-text text-center fs-5">Speed: ${selectedPokemon.base.Speed}</p>
+                            </div>
+                        </dvi>
                     </div>
                 </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <img src="pokemon.json-master/images/${formatoID(selectedPokemon.id)}.png" alt="${selectedPokemon.name.english}" class="img-fluid">
-            </div>
+                
+
         `;
 
         detailsContainer.innerHTML = card;
     }
 }
+
+
+
+// Aggiungere CSS card detail
+// Implementare tasto indietro una volta aperto un detail
+// Chiudere la card detail quando si prosegue una ricerca
+// Migliorare la grafica generale 
+// Sistemare il responsive
+// Implementare la selezione per stagione
+// Mettere online
