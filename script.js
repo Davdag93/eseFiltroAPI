@@ -115,13 +115,3 @@ function details(pokemonId) {
         detailsContainer.innerHTML = card;
     }
 }
-
-
-
-// Aggiungere CSS card detail
-// Implementare tasto indietro una volta aperto un detail
-// Chiudere la card detail quando si prosegue una ricerca
-// Migliorare la grafica generale 
-// Sistemare il responsive
-// Implementare la selezione per stagione
-// Mettere online
